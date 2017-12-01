@@ -1,0 +1,19 @@
+Tandem Diabetes Care Inc.,,,,,,,
+t:connect BG Trends Data Export,,,,,,,
+Patient Name, Taylor White,,,,,,
+Patient DOB, 02/25/1992,,,,,,
+Date Range,06/26/2017 - 06/29/2017,,,,,,
+Report Generated On,06/30/2017,,,,,,
+Number of Records,11,,,,,,
+DeviceType,SerialNo,Date,Hour,DateTimeStamp,BG Reading (mg/dl),NoteDate,Note
+t:slim Insulin Pump,90459079,2017-06-26,6,2017-06-26 06:22:36,138,,""
+t:slim Insulin Pump,90459079,2017-06-28,2,2017-06-28 02:16:48,295,,""
+t:slim Insulin Pump,90459079,2017-06-28,7,2017-06-28 07:01:06,228,,""
+t:slim Insulin Pump,90459079,2017-06-28,19,2017-06-28 19:35:29,194,,""
+t:slim Insulin Pump,90459079,2017-06-29,7,2017-06-29 07:42:45,282,,""
+t:slim Insulin Pump,90459079,2017-06-29,11,2017-06-29 11:17:53,232,,""
+t:slim Insulin Pump,90459079,2017-06-29,12,2017-06-29 12:29:04,372,,""
+t:slim Insulin Pump,90459079,2017-06-29,14,2017-06-29 14:38:30,430,,""
+t:slim Insulin Pump,90459079,2017-06-29,16,2017-06-29 16:33:01,99,,""
+t:slim Insulin Pump,90459079,2017-06-29,18,2017-06-29 18:03:13,108,,""
+t:slim Insulin Pump,90459079,2017-06-29,22,2017-06-29 22:51:01,110,,""

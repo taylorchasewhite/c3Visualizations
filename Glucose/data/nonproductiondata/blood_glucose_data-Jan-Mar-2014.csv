@@ -1,0 +1,10 @@
+Tandem Diabetes Care Inc.,,,,,,,
+t:connect BG Trends Data Export,,,,,,,
+Patient Name, Taylor White,,,,,,
+Patient DOB, 02/25/1992,,,,,,
+Date Range,01/01/2014 - 03/31/2014,,,,,,
+Report Generated On,06/28/2017,,,,,,
+Number of Records,0,,,,,,
+This date range is missing data from the following dates,,,,,,,
+Jan 1 - Feb 23, 2014 |  Feb 26 - Mar 26, 2014,,,,,,
+DeviceType,SerialNo,Date,Hour,DateTimeStamp,BG Reading (mg/dl),NoteDate,Note

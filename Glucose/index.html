@@ -1,0 +1,51 @@
+<head>		
+	<!-- Load c3 -->
+	<!--<script src="https://d3js.org/d3.v3.min.js"></script>
+	<script src="./c3-0.4.14/c3.min.js"></script>
+	<link href="./c3-0.4.14/c3.min.css" rel="stylesheet">-->
+	
+	<!-- billboard.js -->
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="../c3/c3-0.4.14/billboard.js"></script>
+	<link href="../c3/c3-0.4.14/billboard.css" rel="stylesheet">
+	
+	<script src="./diabetesChart.js"></script>
+	<style>
+		.axis {
+		  fill: gray;
+		  -webkit-user-select: none;
+		  -moz-user-select: none;
+		  user-select: none;
+		}
+
+		.axis .halo {
+		  stroke: gray;
+		  stroke-width: 4px;
+		  stroke-linecap: round;
+		}
+
+		.slider .handle path {
+		  stroke: orange;
+		  stroke-width: 3px;
+		  stroke-linecap: round;
+		  pointer-events: none;
+		}
+		
+		.slider .handle circle {
+			fill:orange;
+		}
+
+		.slider .handle text {
+		  fill: black;
+		  text-align: center;
+		  font-size: 18px;
+		}
+	</style>
+</head>
+<body>
+	<div id="divDateSlider"></div>
+	<div id="divGlucoseScores"></div>
+	<script>
+		initialize();
+	</script>
+</body>
