@@ -4,7 +4,7 @@ function initialize() {
 }
 
 function loadThanksgivingData() {
-	d3.tsv('../../dataTank/ThanksgivingDayRace.tsv',function(error, data) {
+	d3.tsv('https://raw.githubusercontent.com/taylorchasewhite/dataTank/master/ThanksgivingDayRace.tsv',function(error, data) {
 		if (error) throw error;
 		var tgdRaceData=data;
 		renderRaceCharts(tgdRaceData);
