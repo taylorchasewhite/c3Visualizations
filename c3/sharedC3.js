@@ -12,10 +12,19 @@ function loadChartData(url) {
 function renderChart(data,graphObject) {
 	console.log(data);
 	
-	var paceChart = c3.generate({
+	var chart = c3.generate({
 		bindto: '#' + graphObject.targetDiv,
 		title: {
 			text: graphObject.title,
+		},
+		oninit: function() {
+			if (graphObject.barsOverArea) {
+				const bars = this.main.select(".bb-chart-bars").node();
+				const lines = this.main.select(".bb-chart-lines").node();
+	
+				// move lines node be positioned before the bars node
+				bars.parentNode.insertBefore(lines, bars);
+			}
 		},
 		data: {
 			json: data,
@@ -23,16 +32,9 @@ function renderChart(data,graphObject) {
 			colors:graphObject.colors,
 			x: 'Date',
 			xFormat: '%m/%d/%Y', // how the date is parsed	
-			/*names: {
-				Date: 'Date',
-				Time: 'Total Time',
-				Pace: 'Pace (min/mi)',
-				FinisherCount:'# Finishers',
-				Females:'# Females',
-				Males:'# Males',
-				AveragePace: 'Avg. Pace (min/mi)'
-			},*/
+			names:graphObject.names,
 			keys: graphObject.keys,
+			axes: graphObject.axes
 		},
 		axis: {
 			x: {
@@ -60,6 +62,27 @@ function renderChart(data,graphObject) {
 					}
 				},*/
 				show: true
+			},
+			y2: {
+				label: {
+					text:"Pace (min/mi)",
+					position:'outer-middle'
+				},
+				min:360,
+				tick: {
+					format: function(d) {
+						var tempDate=new Date(2014,1,1);
+						var u=+tempDate
+						var newU=u+(d*1000);
+						var formatSeconds=d3.timeFormat("%M:%S");
+						return formatSeconds(new Date(newU));
+					}			
+				},
+				show:function() {
+					if(graphObject.axes) {
+						return true;
+					}
+				}()
 			}
 		}/*,
 		tooltip: {
@@ -222,3 +245,11 @@ var colors= [
 		hex: '#d94e6f'
 	},
 ];
+
+function racePaceAxisFormat(d) {
+	var tempDate=new Date(2014,1,1);
+	var u=+tempDate
+	var newU=u+(d*1000);
+	var formatSeconds=d3.timeFormat("%M:%S");
+	return formatSeconds(new Date(newU));
+}

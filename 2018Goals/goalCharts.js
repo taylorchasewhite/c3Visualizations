@@ -2,6 +2,8 @@ function initialize() {
 	initializeC3();
 	loadAndRenderData(getWeightGraphObject());
 	loadAndRenderData(getPushupGraphObject());
+	loadAndRenderData(getMilesRunObject());
+
 }
 
 function getWeightGraphObject () {
@@ -38,7 +40,7 @@ function getPushupGraphObject () {
 	var graphObject = {
 		title: '20,000 Pushups: Race to the Finish',
 		xLabel: 'Date',
-		yLabel: 'Total',
+		yLabel: 'Pushups Completed',
 		targetDiv: 'divPushupChart',
 		dataURL:'https://raw.githubusercontent.com/taylorchasewhite/dataTank/master/Pushups.tsv',
 		keys: {
@@ -47,15 +49,60 @@ function getPushupGraphObject () {
 		},
 		types: {
 			Count:'bar',
-			Total:'area-spline',
+			Total:'area-step',
 			Goal:'spline'
+		},
+		names: {
+			Count:"Completed Pushups"
 		},
 		colors: { 
 			Count:randomColor(),//'#00bfd4',
 			Total:randomColor(),//'#d94e6f'
 			Goal: randomColor()
 		},
-		yMin:0
+		yMin:0,
+		xTick:{
+			fit:false
+		},
+		barsOverArea:true
+		/*dataURL:'https://raw.githubusercontent.com/taylorchasewhite/dataTank/master/ThanksgivingDayRace.tsv'*/
+
+	};
+	return graphObject;
+}
+
+function getMilesRunObject () {
+	var graphObject = {
+		title: '2018: Miles Run',
+		xLabel: 'Date',
+		yLabel: 'Miles Run',
+		targetDiv: 'divMilesRunChart',
+		dataURL:'https://raw.githubusercontent.com/taylorchasewhite/dataTank/master/Miles.tsv',
+		keys: {
+			x: 'Date',
+			value: ['Distance','Total','Pace']
+		},
+		types: {
+			Distance:'bar',
+			Total:'area-step',
+			Pace:'spline',
+			Goal:'spline'
+		},
+		colors: { 
+			Distance:randomColor(),//'#00bfd4',
+			Total:randomColor(),//'#d94e6f'
+			Pace:randomColor(),
+			Goal: randomColor()
+		},
+		yMin:0,
+		xTick:{
+			fit:false
+		},
+		axes: {
+			Total:"y",
+			Pace:"y2"
+		},
+		barsOverArea:true
 		/*dataURL:'https://raw.githubusercontent.com/taylorchasewhite/dataTank/master/ThanksgivingDayRace.tsv'*/
 
 	};
