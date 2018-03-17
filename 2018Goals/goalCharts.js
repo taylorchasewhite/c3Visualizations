@@ -29,6 +29,10 @@ function getWeightGraphObject () {
 			format: '%B \'%y',
 			fit:false
 		},
+		regions: {
+			Weight:[{'start':new Date().toLocaleDateString(), 'style':'dashed'}]
+		},
+		todayLine:true,
 		yMin:150
 		/*dataURL:'https://raw.githubusercontent.com/taylorchasewhite/dataTank/master/ThanksgivingDayRace.tsv'*/
 

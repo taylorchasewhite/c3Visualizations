@@ -34,7 +34,19 @@ function renderChart(data,graphObject) {
 			xFormat: '%m/%d/%Y', // how the date is parsed	
 			names:graphObject.names,
 			keys: graphObject.keys,
-			axes: graphObject.axes
+			axes: graphObject.axes,
+			empty: { label: { text: "No Data Available" }   },
+			regions:graphObject.regions
+		},
+		grid: {
+			x: {
+				lines: function() {
+					if (graphObject.todayLine) {
+						return [{value:new Date().toLocaleDateString(), text:'Today'}];
+					}
+					return;
+				}()
+			}
 		},
 		axis: {
 			x: {
