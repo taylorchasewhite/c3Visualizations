@@ -1,6 +1,7 @@
 function initialize() {
 	initializeC3();
-	loadWeightData(getWeightGraphObject());
+	loadAndRenderData(getWeightGraphObject());
+	loadAndRenderData(getPushupGraphObject());
 }
 
 function getWeightGraphObject () {
@@ -9,7 +10,7 @@ function getWeightGraphObject () {
 		xLabel: 'Date',
 		yLabel: 'Weight (lbs)',
 		targetDiv: 'divWeightChart',
-		dataURL:'./Weight.tsv',
+		dataURL:'https://raw.githubusercontent.com/taylorchasewhite/dataTank/master/Weight.tsv',
 		keys: {
 			x: 'Date',
 			value: ['Weight','Goal']
@@ -21,14 +22,47 @@ function getWeightGraphObject () {
 		colors: { 
 			Weight:randomColor(),//'#00bfd4',
 			Goal:randomColor()//'#d94e6f'
-		}
+		},
+		xTick:{
+			format: '%B \'%y',
+			fit:false
+		},
+		yMin:150
 		/*dataURL:'https://raw.githubusercontent.com/taylorchasewhite/dataTank/master/ThanksgivingDayRace.tsv'*/
 
 	};
 	return graphObject;
 }
 
-function loadWeightData(graphObject) {
+function getPushupGraphObject () {
+	var graphObject = {
+		title: '20,000 Pushups: Race to the Finish',
+		xLabel: 'Date',
+		yLabel: 'Total',
+		targetDiv: 'divPushupChart',
+		dataURL:'https://raw.githubusercontent.com/taylorchasewhite/dataTank/master/Pushups.tsv',
+		keys: {
+			x: 'Date',
+			value: ['Count','Total']
+		},
+		types: {
+			Count:'bar',
+			Total:'area-spline',
+			Goal:'spline'
+		},
+		colors: { 
+			Count:randomColor(),//'#00bfd4',
+			Total:randomColor(),//'#d94e6f'
+			Goal: randomColor()
+		},
+		yMin:0
+		/*dataURL:'https://raw.githubusercontent.com/taylorchasewhite/dataTank/master/ThanksgivingDayRace.tsv'*/
+
+	};
+	return graphObject;
+}
+
+function loadAndRenderData(graphObject) {
 	d3.tsv(graphObject.dataURL,function(error, data) {
 		if (error) throw error;
 		renderChart(data,graphObject);
@@ -39,9 +73,9 @@ function renderRaceCharts(tgdRaceData) {
 	console.log(tgdRaceData);
 	
 	var numRacersChart = c3.generate({
-		bindto: '#divNumRacersChart',
+		bindto: '#divPushupChart',
 		title: {
-			text: 'Taylor White\'s Thanksgiving Day Number of Racers',
+			text: '20,000 Pushups - Progress',
 		},
 		data: {
 			json: tgdRaceData,

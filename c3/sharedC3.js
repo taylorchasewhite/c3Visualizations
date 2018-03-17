@@ -41,11 +41,7 @@ function renderChart(data,graphObject) {
 					position: "outer-center"
 				},
 				type: 'timeseries',
-				tick: {
-					format: '%B \'%y',
-					fit:false
-					//format: '%B %Y'
-				},
+				tick: graphObject.xTick,
 				show: true
 				},
 			y: {
@@ -53,7 +49,7 @@ function renderChart(data,graphObject) {
 					text: graphObject.yLabel,
 					position: "outer-middle"
 				},
-				min:150,
+				min:graphObject.yMin,
 				/*tick: {
 					format: function(d) {
 						var tempDate=new Date(2014,1,1);
