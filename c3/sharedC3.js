@@ -265,3 +265,7 @@ function racePaceAxisFormat(d) {
 	var formatSeconds=d3.timeFormat("%M:%S");
 	return formatSeconds(new Date(newU));
 }
+
+function resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+}
