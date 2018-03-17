@@ -9,27 +9,21 @@ function loadChartData(url) {
 	});
 }
 
-function renderChart(data,divChartID,strTitle) {
+function renderChart(data,graphObject) {
 	console.log(data);
 	
 	var paceChart = c3.generate({
-		bindto: divChartID,
+		bindto: '#' + graphObject.targetDiv,
 		title: {
-			text: strTitle,
+			text: graphObject.title,
 		},
 		data: {
 			json: data,
-			types: {
-				Pace:'area-spline',
-				AveragePace:'spline'
-			},
-			colors: { 
-				Pace:randomColor(),//'#00bfd4',
-				AveragePace:randomColor()//'#d94e6f'
-			},
+			types: graphObject.types,
+			colors:graphObject.colors,
 			x: 'Date',
 			xFormat: '%m/%d/%Y', // how the date is parsed	
-			names: {
+			/*names: {
 				Date: 'Date',
 				Time: 'Total Time',
 				Pace: 'Pace (min/mi)',
@@ -37,32 +31,30 @@ function renderChart(data,divChartID,strTitle) {
 				Females:'# Females',
 				Males:'# Males',
 				AveragePace: 'Avg. Pace (min/mi)'
-			},
-			keys: {
-				x: 'Date',
-				value: ['Pace','AveragePace']
-			},
+			},*/
+			keys: graphObject.keys,
 		},
 		axis: {
 			x: {
 				label: {
-					text: "Race Date",
+					text: graphObject.xLabel,
 					position: "outer-center"
 				},
 				type: 'timeseries',
 				tick: {
-					format: '%Y'
+					format: '%B \'%y',
+					fit:false
 					//format: '%B %Y'
 				},
 				show: true
 				},
 			y: {
 				label: {
-					text: "Pace (min/mi)",
+					text: graphObject.yLabel,
 					position: "outer-middle"
 				},
-				min:390,
-				tick: {
+				min:150,
+				/*tick: {
 					format: function(d) {
 						var tempDate=new Date(2014,1,1);
 						var u=+tempDate
@@ -70,10 +62,10 @@ function renderChart(data,divChartID,strTitle) {
 						var formatSeconds=d3.timeFormat("%M:%S");
 						return formatSeconds(new Date(newU));
 					}
-				},
+				},*/
 				show: true
 			}
-		},
+		}/*,
 		tooltip: {
 			format: {
 				title: function (d) { 
@@ -92,7 +84,7 @@ function renderChart(data,divChartID,strTitle) {
 					return returnVal;
 				}
 			}
-		}
+		}*/
 	});
 	var numRacersChart = c3.generate({
 		bindto: '#divNumRacersChart',
@@ -154,6 +146,13 @@ function renderChart(data,divChartID,strTitle) {
 			}
 		}
 	});
+}
+
+function getGraphObject(title,xAxisLabel,yAxisLabel) {
+	var graphObject = {};
+	graphObject.title=title;
+	graphObject.xLabel=xAxisLabel;
+	graphObject.yLabel=yAxisLabel;
 }
 
 function buttonClick() {

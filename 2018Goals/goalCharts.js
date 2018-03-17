@@ -1,12 +1,37 @@
 function initialize() {
 	initializeC3();
-	loadWeightData();
+	loadWeightData(getWeightGraphObject());
 }
 
-function loadWeightData() {
-	d3.tsv('https://raw.githubusercontent.com/taylorchasewhite/dataTank/master/ThanksgivingDayRace.tsv',function(error, data) {
+function getWeightGraphObject () {
+	var graphObject = {
+		title: 'Taylor\'s Weight Over Time',
+		xLabel: 'Date',
+		yLabel: 'Weight (lbs)',
+		targetDiv: 'divWeightChart',
+		dataURL:'./Weight.tsv',
+		keys: {
+			x: 'Date',
+			value: ['Weight','Goal']
+		},
+		types: {
+			Weight:'area-spline',
+			Goal:'spline'
+		},
+		colors: { 
+			Weight:randomColor(),//'#00bfd4',
+			Goal:randomColor()//'#d94e6f'
+		}
+		/*dataURL:'https://raw.githubusercontent.com/taylorchasewhite/dataTank/master/ThanksgivingDayRace.tsv'*/
+
+	};
+	return graphObject;
+}
+
+function loadWeightData(graphObject) {
+	d3.tsv(graphObject.dataURL,function(error, data) {
 		if (error) throw error;
-		renderChart(data,'#divWeightChart','test');
+		renderChart(data,graphObject);
 	});
 }
 
