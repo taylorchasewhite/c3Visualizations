@@ -42,7 +42,23 @@ function renderChart(data,graphObject) {
 			x: {
 				lines: function() {
 					if (graphObject.todayLine) {
-						return [{value:new Date().toLocaleDateString(), text:'Today'}];
+						return [{
+							value:new Date().toLocaleDateString(), 
+							text:'Today',
+							class:'today-line'
+						}];
+					}
+					return;
+				}()
+			},
+			y: {
+				lines: function() {
+					if (graphObject.goal) {
+						return [{
+							value:graphObject.goal.value, 
+							text:graphObject.goal.title + " - " + graphObject.goal.value,
+							class:'dashed-goal'
+						}];
 					}
 					return;
 				}()
@@ -96,13 +112,13 @@ function renderChart(data,graphObject) {
 					}
 				}()
 			}
-		}/*,
+		},
 		tooltip: {
 			format: {
 				title: function (d) { 
-					var dateFormat=d3.timeFormat("%Y");
-					return 'Thanksgiving ' + dateFormat(d); 
-				},
+					var dateFormat=d3.timeFormat("%d %b \'%y");
+					return dateFormat(d); 
+				},/*
 				value: function (value, ratio, id,index) {
 					var tempDate= new Date(2014, 4, 1);
 					var u=+tempDate;
@@ -113,9 +129,9 @@ function renderChart(data,graphObject) {
 					var returnVal=formatSeconds(new Date(newU));
 	
 					return returnVal;
-				}
+				}*/
 			}
-		}*/
+		}
 	});
 	var numRacersChart = c3.generate({
 		bindto: '#divNumRacersChart',

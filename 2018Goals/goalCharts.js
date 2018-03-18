@@ -15,22 +15,25 @@ function getWeightGraphObject () {
 		dataURL:'https://raw.githubusercontent.com/taylorchasewhite/dataTank/master/Weight.tsv',
 		keys: {
 			x: 'Date',
-			value: ['Weight','Goal']
+			value: ['Weight']
 		},
 		types: {
-			Weight:'area-spline',
-			Goal:'spline'
+			Weight:'area-spline'
 		},
 		colors: { 
-			Weight:randomColor(),//'#00bfd4',
-			Goal:randomColor()//'#d94e6f'
+			Weight:randomColor()//,//'#00bfd4',
+			//Goal:randomColor()//'#d94e6f'
 		},
 		xTick:{
-			format: '%B \'%y',
+			format: '%b \'%y',
 			fit:false
 		},
 		regions: {
 			Weight:[{'start':new Date().toLocaleDateString(), 'style':'dashed'}]
+		},
+		goal: {
+			value: 165,
+			title: "Goal"
 		},
 		todayLine:true,
 		yMin:150
@@ -66,6 +69,7 @@ function getPushupGraphObject () {
 		},
 		yMin:0,
 		xTick:{
+			format: '%d %b \'%y',
 			fit:false
 		},
 		barsOverArea:true
@@ -100,7 +104,13 @@ function getMilesRunObject () {
 		},
 		yMin:0,
 		xTick:{
+			format:'%b \'%y',
 			fit:false
+		},
+		tooltip: {
+			format: {
+				title: "Hello world"
+			}
 		},
 		axes: {
 			Total:"y",
@@ -184,75 +194,3 @@ function renderRaceCharts(tgdRaceData) {
 		}
 	});
 }
-
-function buttonClick() {
-	setTimeout(function () {
-	    chart.load({
-	        columns: [
-	            ['data3', 400, 500, 450, 700, 600, 500]
-	        ]
-	    });
-	}, 1000);
-}
-
-function randomColor() {
-	return colors[Math.floor(Math.random()*colors.length)].hex;
-}
-
-var colors= [
-	{
-		name:"Azure",
-		rgb: "rgb(0,133,242)",
-		hex: '#0085f2'
-	},
-	{
-		name:"Fuchsia",
-		rgb: "rgb(221,41,157)",
-		hex: '#dd299d'
-	},
-	{
-		name:"Lime",
-		rgb: "rgb(105,195,0)",
-		hex: '#69c300'
-	},
-	{
-		name:"Dahlia",
-		rgb: "rgb(0,133,242)",
-		hex: '#b429cc'
-	},
-	{
-		name:"Caribbean",
-		rgb: "rgb(0,133,242)",
-		hex: '#00bfd4'
-	},
-	{
-		name:"Tangerine",
-		rgb: "rgb(0,133,242)",
-		hex: '#ff9200'
-	},
-	{
-		name:"Wisteria",
-		rgb: "rgb(0,133,242)",
-		hex: '#6a4ce0'
-	},
-	{
-		name:"Mediterranean",
-		rgb: "rgb(0,133,242)",
-		hex: '#19c295'
-	},
-	{
-		name:"Blush",
-		rgb: "rgb(0,133,242)",
-		hex: '#ff6665'
-	},
-	{
-		name:"Sky",
-		rgb: "rgb(0,133,242)",
-		hex: '#24a4ee'
-	},
-	{
-		name:"Rose",
-		rgb: "rgb(0,133,242)",
-		hex: '#d94e6f'
-	},
-];
