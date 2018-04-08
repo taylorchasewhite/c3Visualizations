@@ -111,6 +111,12 @@ function renderChart(data,graphObject) {
 						return true;
 					}
 				}()
+			},
+			subchart: {
+				show:function() {
+					return graphObject.brush;
+				}(), 
+				position:"top"
 			}
 		},
 		tooltip: {

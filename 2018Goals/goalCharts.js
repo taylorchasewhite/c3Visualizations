@@ -35,6 +35,7 @@ function getWeightGraphObject () {
 			value: 165,
 			title: "Goal"
 		},
+		brush:true,
 		todayLine:true,
 		yMin:150
 		/*dataURL:'https://raw.githubusercontent.com/taylorchasewhite/dataTank/master/ThanksgivingDayRace.tsv'*/
