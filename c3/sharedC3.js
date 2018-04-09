@@ -114,9 +114,7 @@ function renderChart(data,graphObject) {
 			},
 			subchart: {
 				show:function() {
-					return graphObject.brush;
 				}(), 
-				position:"top"
 			}
 		},
 		tooltip: {

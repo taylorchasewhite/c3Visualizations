@@ -35,7 +35,7 @@ function getWeightGraphObject () {
 			value: 165,
 			title: "Goal"
 		},
-		brush:true,
+		brush:false, /* this doesn't work with an area-spline... looks like the line graph doesn't redraw... */
 		todayLine:true,
 		yMin:150
 		/*dataURL:'https://raw.githubusercontent.com/taylorchasewhite/dataTank/master/ThanksgivingDayRace.tsv'*/
