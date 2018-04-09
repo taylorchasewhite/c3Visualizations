@@ -112,10 +112,12 @@ function renderChart(data,graphObject) {
 					}
 				}()
 			},
-			subchart: {
-				show:function() {
-				}(), 
-			}
+		},
+		subchart: {
+			show:function() {
+				return graphObject.brush;
+			}(), 
+			position:"top"
 		},
 		tooltip: {
 			format: {
